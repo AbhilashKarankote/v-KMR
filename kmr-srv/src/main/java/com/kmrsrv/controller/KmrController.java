@@ -1,4 +1,4 @@
-package com.virtusa.kmrsrv.controller;
+package com.kmrsrv.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.virtusa.kmrsrv.model.CaptureModel;
-import com.virtusa.kmrsrv.model.ProbSol;
-import com.virtusa.kmrsrv.service.CaptureService;
+import com.kmrsrv.model.CaptureModel;
+import com.kmrsrv.model.ProbSol;
+import com.kmrsrv.service.CaptureService;
 
 
 @RestController

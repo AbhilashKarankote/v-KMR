@@ -1,4 +1,4 @@
-package com.virtusa.kmrsrv;
+package com.kmrsrv;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

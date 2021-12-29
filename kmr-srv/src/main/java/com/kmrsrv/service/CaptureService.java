@@ -1,4 +1,4 @@
-package com.virtusa.kmrsrv.service;
+package com.kmrsrv.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.virtusa.kmrsrv.model.CaptureModel;
-import com.virtusa.kmrsrv.model.ProbSol;
-import com.virtusa.kmrsrv.repository.KmrRepo;
+import com.kmrsrv.model.CaptureModel;
+import com.kmrsrv.model.ProbSol;
+import com.kmrsrv.repository.KmrRepo;
 
 @Service
 public class CaptureService {
