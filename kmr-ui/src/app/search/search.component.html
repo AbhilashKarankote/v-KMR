@@ -1,0 +1,32 @@
+<h3>Search Knowledge</h3>
+<div class="align">
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill" color = "primary" align="center" >
+        <span matPrefix> </span>
+        <input type="search" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
+        <button matSuffix mat-button (click)="onSubmit()"><mat-icon >search</mat-icon></button>
+        </mat-form-field>
+        <br/>
+    </form>
+</div>
+
+<div *ngIf="data.length !== 0; else elseBlock">
+    <mat-list role="list" *ngFor="let d of data;let i = index">
+        <mat-list-item role="listitem">Problem: {{d.problem}}</mat-list-item>
+        <mat-list-item role="listitem">Solution: {{d.solution}}</mat-list-item>
+        <mat-list-item role="listitem"><a (click)="moreDetails(i)">find more</a></mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
+
+<ng-template #elseBlock class="align">
+    <h1 style="text-align: center;">Sorry, No data found!</h1>
+</ng-template>
+<ngx-doc-viewer
+  [url]="doc"
+  viewer="google"
+  style="width:100%;height:50vh;"
+></ngx-doc-viewer>
+<!-- <pdf-viewer [src]="doc" [render-text]="true" style="display: block;">
+</pdf-viewer> -->

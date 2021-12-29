@@ -1,0 +1,54 @@
+
+<!-- <div class="mat-title">KMR Capture</div> -->
+<h3>KMR Capture</h3>
+<form #f class="example-form" [formGroup]="captureForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label color= "primary">Project Name</mat-label>
+      <input matInput placeholder="BNYM" type="text" formControlName="projectName" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color= "primary">Project Code</mat-label>
+        <input matInput type="number" placeholder="123456" type="text" formControlName="projectCode">
+      </mat-form-field>
+      
+      <div formArrayName="technologies">
+        <div class="row"
+        *ngFor="let tech of getTechControls(); let i= index"
+        >
+        <mat-form-field style="width: 350px;float: left;height: 15px;" appearance="fill">
+        <mat-label color= "primary">Technology/Skills Identified</mat-label>
+        <input matInput placeholder="java" type="text" [formControlName]="i">
+      </mat-form-field>
+      
+
+          
+          <button mat-raised-button type="button" style="padding: 0.2rem;"  color="warn" (click)="getTechControls().splice(i,1)">X</button>
+        
+
+        </div>
+
+        
+      </div>
+      <button mat-raised-button type="button" (click)="addTech()">Add more</button><br>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color= "primary">Project SBU</mat-label>
+        <input matInput placeholder="BFS Americas" type="text" formControlName="projectSbu" >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color= "primary">Project Manager</mat-label>
+        <input matInput type="text" formControlName="projectManager"  >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color= "primary">Technical lead</mat-label>
+        <input matInput type="text" formControlName="technicalLead" >
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" [disabled]="!captureForm.valid">Submit</button>
+  </form>
+
+  

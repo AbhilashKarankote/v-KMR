@@ -1,0 +1,5 @@
+export const baseUrl:string = "http://localhost:4200/api/"
+export const addProject:string = "addProject"
+export const getProject:string = "getProject/"
+export const addKnowledge:string = "addKnowledge/"
+export const getKnowledge:string = "getKnowledge/"

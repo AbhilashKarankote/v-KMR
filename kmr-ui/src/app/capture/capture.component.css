@@ -1,0 +1,20 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .padding{
+      padding-left: 2rem;
+  }
+
+  button{
+      margin: 1rem;
+  }
+  /* .file-input {
+    display: none;
+  } */
