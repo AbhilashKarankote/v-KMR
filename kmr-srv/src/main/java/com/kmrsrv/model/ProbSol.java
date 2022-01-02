@@ -13,6 +13,17 @@ public class ProbSol {
 	private String solution;
 	private Binary file;
 	
+	
+	
+	public ProbSol() {
+		super();
+	}
+	public ProbSol( String problem, String solution, Binary file) {
+		super();
+		this.problem = problem;
+		this.solution = solution;
+		this.file = file;
+	}
 	public String getProblem() {
 		return problem;
 	}

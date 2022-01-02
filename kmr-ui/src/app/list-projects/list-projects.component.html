@@ -1,0 +1,7 @@
+<h2>Projects</h2>
+<mat-nav-list>
+    <mat-list-item *ngFor="let p of projectList">
+        <button mat-button [routerLink]="['/addKnowledge',p.id]" >{{p.projectName}}</button>
+        <mat-divider></mat-divider>
+     </mat-list-item>
+  </mat-nav-list>

@@ -3,9 +3,11 @@ package com.kmrsrv.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +25,10 @@ import com.kmrsrv.model.CaptureModel;
 import com.kmrsrv.model.ProbSol;
 import com.kmrsrv.service.CaptureService;
 
-
 @RestController
 @RequestMapping(value = "/api")
 public class KmrController {
+	
 	
 	@Autowired
 	private CaptureService capService;
@@ -68,6 +70,17 @@ public class KmrController {
 	@GetMapping(value = "/getKnowledge/{searchKey}")
 	public List<ProbSol> getKnowledge(@PathVariable String searchKey){
 		return capService.getKnowledge(searchKey);
+		
+	}
+	
+	@GetMapping(value = "/getProjects")
+	public List<CaptureModel> getProjects(){
+		return capService.getProjects();
+		
+	}
+	@GetMapping(value = "/getProjectById/{id}")
+	public CaptureModel getProjectById(@PathVariable String id){
+		return capService.getProjectById(id);
 		
 	}
 	

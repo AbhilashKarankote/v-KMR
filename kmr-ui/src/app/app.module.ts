@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddKnowledgeComponent } from './add-knowledge/add-knowledge.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ListProjectsComponent } from './list-projects/list-projects.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CaptureComponent,
     SearchComponent,
     FileUploadComponent,
-    AddKnowledgeComponent
+    AddKnowledgeComponent,
+    ListProjectsComponent
   ],
   imports: [
     BrowserModule,

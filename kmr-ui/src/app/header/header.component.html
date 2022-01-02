@@ -18,11 +18,14 @@
                 <button mat-button [routerLink]="['/search']" >Search</button>
              </mat-list-item>
              <mat-divider ></mat-divider>
-            <mat-list-item  routerLinkActive="active">
+            <mat-list-item *ngIf="false"  routerLinkActive="active">
                <button mat-button [routerLink]="['/addProject']"  >Add project</button>
             </mat-list-item>
-            <mat-divider ></mat-divider>
             <mat-list-item  routerLinkActive="active">
+               <button mat-button [routerLink]="['/list-projects']"  >Projects</button>
+            </mat-list-item>
+            <mat-divider ></mat-divider>
+            <mat-list-item *ngIf="false"  routerLinkActive="active">
                <button mat-button [routerLink]="['/addKnowledge']" >Add Knowledge</button>
             </mat-list-item>
           </mat-nav-list>

@@ -8,6 +8,13 @@ import * as constants from '../shared/constants';
   providedIn: 'root'
 })
 export class CaptureService {
+  getProjectById(id: string) {
+    return this.http.get<Project>(constants.baseUrl+constants.getProjectById+id);
+  }
+  
+  getProjects(): Observable<[Project]> {
+   return this.http.get<[Project]>(constants.baseUrl+constants.getProjectList);
+  }
 
   search(search: string) {
     return this.http.get(constants.baseUrl+constants.getKnowledge+search);

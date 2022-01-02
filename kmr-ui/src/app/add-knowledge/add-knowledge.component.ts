@@ -1,6 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { CaptureService } from '../capture/capture.service';
@@ -18,19 +19,28 @@ export class AddKnowledgeComponent implements OnInit {
   project:Project
    upload$:any
     formData:FormData
+    id:string
 
   constructor(private fb:FormBuilder,
      private http:HttpClient,
      private captureService:CaptureService,
-     private knowledgeService:AddKnowledgeService
+     private knowledgeService:AddKnowledgeService,
+     private route:ActivatedRoute
      ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(res => {
+      this.id = res["id"];
+    })
+    this.captureService.getProjectById(this.id).subscribe(proj => {
+      this.project = proj
+      console.log(proj);
+    })
     this.knowledgeForm = this.fb.group({
-      "projectCode":["",Validators.required],
-      "problem":["",Validators.required],
-      "solution":["",Validators.required],
-      "file":["",Validators.required]
+      "projectCode":[""],
+      "problem":[""],
+      "solution":[""],
+      "file":[""]
     })
   }
 
@@ -38,15 +48,15 @@ export class AddKnowledgeComponent implements OnInit {
   uploadProgress:number;
   uploadSub: Subscription;
 
-  onChange(){
-    //this.project.technologies.concat(", ")
-    let projectCode=this.knowledgeForm.get("projectCode").value
-    console.log(projectCode)
-    this.captureService.getProject(projectCode).subscribe(proj =>{
-      console.log(proj)
-    this.project=proj
-    })
-  }
+  // onChange(){
+  //   //this.project.technologies.concat(", ")
+  //   let projectCode=this.knowledgeForm.get("projectCode").value
+  //   console.log(projectCode)
+  //   this.captureService.getProject(projectCode).subscribe(proj =>{
+  //     console.log(proj)
+  //   this.project=proj
+  //   })
+  // }
 
   onFileSelected(event) {
     const file:File = event.target.files[0];
@@ -76,7 +86,11 @@ this.uploadSub = null;
 }
 
 onSubmit(){
+  this.knowledgeForm.patchValue({
+    "projectCode": this.project.projectCode
+  })
   console.log(this.knowledgeForm.value)
+
   this.upload$ = this.knowledgeService.addKnowledge( this.knowledgeForm.get("projectCode").value,this.formData,this.knowledgeForm.value)
   .pipe(
       finalize(() => this.reset())
@@ -87,6 +101,17 @@ onSubmit(){
       this.uploadProgress = Math.round(100 * (event.loaded / event.total));
     }
   })
+
+  this.ngOnInit();
+  this.fileName=null
 }
+
+isValid():boolean{
+  return this.knowledgeForm.get("problem").value !== ""
+   && this.knowledgeForm.get("solution").value !== ""
+   && this.knowledgeForm.get("file").value !== ""
+}
+
+
 
 }

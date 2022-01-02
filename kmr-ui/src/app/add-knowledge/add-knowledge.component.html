@@ -1,56 +1,59 @@
 <h3>Add Knowledge</h3>
+
+<!-- <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label color= "primary">Project Code</mat-label>
+  <input matInput placeholder="1234" formControlName="projectCode">
+</mat-form-field> -->
+
+<mat-list role="list" *ngIf="project">
+  <mat-list-item role="listitem">Project Name: {{project.projectName}}</mat-list-item>
+  <mat-list-item role="listitem">Project Code: {{project.projectCode}}</mat-list-item>
+  <mat-list-item role="listitem">Project SBU: {{project.projectSbu}}</mat-list-item>
+  <mat-list-item role="listitem">Project Manager: {{project.projectManager}}</mat-list-item>
+  <mat-list-item role="listitem">Technical Lead: {{project.technicalLead}}</mat-list-item>
+  <mat-list-item role="listitem">Technologies: {{project.technologies}}</mat-list-item>
+</mat-list>
+
 <form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="onSubmit()">
-
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label color= "primary">Project Code</mat-label>
-            <input matInput placeholder="1234" formControlName="projectCode" (change)="onChange()">
-          </mat-form-field>
-
-          <mat-list role="list" *ngIf="project">
-            <mat-list-item role="listitem">Project Name: {{project.projectName}}</mat-list-item>
-            <mat-list-item role="listitem">Project SBU: {{project.projectSbu}}</mat-list-item>
-            <mat-list-item role="listitem">Project Manager: {{project.projectManager}}</mat-list-item>
-            <mat-list-item role="listitem">Technical Lead: {{project.technicalLead}}</mat-list-item>
-            <mat-list-item role="listitem">Technologies: {{project.technologies}}</mat-list-item>
-          </mat-list>
-
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label color= "primary">problem</mat-label>
-            <input matInput placeholder="problem" formControlName="problem" >
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width" appearance="fill" color = "primary">
-            <mat-label>Solution</mat-label>
-            <textarea matInput placeholder="Solution" formControlName="solution" rows="8"   cdkTextareaAutosize></textarea>
+    <mat-card>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label color= "primary">problem</mat-label>
+              <input matInput placeholder="problem" formControlName="problem" >
+            </mat-form-field>
+  
+            <mat-form-field class="example-full-width" appearance="fill" color = "primary">
+              <mat-label>Solution</mat-label>
+              <textarea matInput placeholder="Solution" formControlName="solution" rows="8"   cdkTextareaAutosize></textarea>
+              
+            </mat-form-field>
             
-          </mat-form-field>
-          
-          <input type="file" class="file-input"
-       (change)="onFileSelected($event)" formControlName="file"  #fileUpload>
-
-   <div class="file-upload">
-
-   {{fileName || "No file uploaded yet."}}
-
-    <button mat-mini-fab color="primary" class="upload-btn"
-      (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-
-    </button>
-
-</div>
-
-<div class="progress">
-
-  <mat-progress-bar class="progress-bar" mode="determinate"
-                    [value]="uploadProgress" *ngIf="uploadProgress">
-  </mat-progress-bar>
-
-  <mat-icon class="cancel-upload" (click)="cancelUpload()" 
-            *ngIf="uploadProgress">delete_forever</mat-icon>
-
-</div>
-      
-      <button mat-raised-button color="primary" [disabled]="!knowledgeForm.valid">Submit</button>
-  </form>
+            <input type="file" class="file-input"
+         (change)="onFileSelected($event)" formControlName="file"  #fileUpload>
+  
+     <div class="file-upload">
+  
+     {{fileName || "No file uploaded yet."}}
+  
+      <button mat-mini-fab color="primary" class="upload-btn"
+        (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+  
+      </button>
+  
+  </div>
+  
+  <div class="progress">
+  
+    <mat-progress-bar class="progress-bar" mode="determinate"
+                      [value]="uploadProgress" *ngIf="uploadProgress">
+    </mat-progress-bar>
+  
+    <mat-icon class="cancel-upload" (click)="cancelUpload()" 
+              *ngIf="uploadProgress">delete_forever</mat-icon>
+  
+  </div>
+        
+</mat-card>
+        <button mat-raised-button color="primary" [disabled]="!isValid()">Submit</button>
+    </form>
 

@@ -83,4 +83,12 @@ public class CaptureService {
 		return data;
 	}
 
+	public List<CaptureModel> getProjects() {
+		return kmrRepo.findAll();
+	}
+
+	public CaptureModel getProjectById(String id) {
+		return kmrRepo.findById(id).get();
+	}
+
 }

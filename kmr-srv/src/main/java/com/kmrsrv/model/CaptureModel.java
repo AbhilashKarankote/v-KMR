@@ -1,5 +1,6 @@
 package com.kmrsrv.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -26,6 +27,33 @@ public class CaptureModel {
 	
 	
 	
+	
+	
+	public CaptureModel() {
+		super();
+	}
+
+
+
+	public CaptureModel( String projectName, String projectCode, List<String> technologies, String projectSbu,
+			String projectManager, String technicalLead, List<ProbSol> problemSolution) {
+		super();
+		this.projectName = projectName;
+		this.projectCode = projectCode;
+		this.technologies = technologies;
+		this.projectSbu = projectSbu;
+		this.projectManager = projectManager;
+		this.technicalLead = technicalLead;
+		if(problemSolution.isEmpty()) {
+			this.problemSolution= new ArrayList<ProbSol>();
+		} else {
+			this.problemSolution = problemSolution;
+		}
+		
+	}
+
+
+
 	public String getId() {
 		return id;
 	}
