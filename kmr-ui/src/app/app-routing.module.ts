@@ -7,12 +7,12 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
 
 
 const routes: Routes = [
-  {path: "addProject",component: CaptureComponent},
+  //{path: "addProject",component: CaptureComponent},
   {path: "list-projects",component: ListProjectsComponent},
   {path: "search",component: SearchComponent},
   {path: "addKnowledge/:id",component: AddKnowledgeComponent},
   {path: "addKnowledge",component: AddKnowledgeComponent},
-  {path: "",redirectTo: "addProject",pathMatch: "full"}
+  {path: "",redirectTo: "search",pathMatch: "full"}
 ];
 
 @NgModule({
