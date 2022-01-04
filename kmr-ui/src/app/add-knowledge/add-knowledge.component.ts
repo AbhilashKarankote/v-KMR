@@ -7,6 +7,8 @@ import { finalize } from 'rxjs/operators';
 import { CaptureService } from '../capture/capture.service';
 import { Project } from '../Model/project-model';
 import { AddKnowledgeService } from './add-knowledge.service';
+import { ColDef } from 'ag-grid-community';
+import { ActionCellRenderer } from './action-cell-renderer.component';
 
 @Component({
   selector: 'app-add-knowledge',
@@ -15,11 +17,17 @@ import { AddKnowledgeService } from './add-knowledge.service';
 })
 export class AddKnowledgeComponent implements OnInit {
 
+  frameworkComponents;
   knowledgeForm:FormGroup
   project:Project
-   upload$:any
-    formData:FormData
-    id:string
+  upload$:any
+  formData:FormData
+  id:string
+  rowData;
+  columnDefs: ColDef[] = [
+    { field: 'problem', headerName: "Existing Solutions",width:1000},
+    { field: 'action',headerName: "Action",width:200, cellRenderer: "actionCellRenderer" }
+];
 
   constructor(private fb:FormBuilder,
      private http:HttpClient,
@@ -29,12 +37,20 @@ export class AddKnowledgeComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
+    this.frameworkComponents = {
+      actionCellRenderer:ActionCellRenderer
+    }
     this.route.params.subscribe(res => {
       this.id = res["id"];
     })
     this.captureService.getProjectById(this.id).subscribe(proj => {
       this.project = proj
+       //proj.problemSolution.forEach( ps => { this.rowData.push({"problem":ps.problem}) })
+      this.rowData =  proj.problemSolution.map(ps => {
+         return {"problem":ps.problem}
+         });
       console.log(proj);
+      console.log(this.rowData);
     })
     this.knowledgeForm = this.fb.group({
       "projectCode":[""],
@@ -42,6 +58,7 @@ export class AddKnowledgeComponent implements OnInit {
       "solution":[""],
       "file":[""]
     })
+    
   }
 
   fileName = '';

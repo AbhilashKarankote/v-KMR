@@ -15,7 +15,7 @@
     <mat-list role="list" *ngFor="let d of data;let i = index">
         <mat-list-item role="listitem">Problem: {{d.problem}}</mat-list-item>
         <mat-list-item role="listitem">Solution: {{d.solution}}</mat-list-item>
-        <mat-list-item role="listitem"><a (click)="moreDetails(i)">find more</a></mat-list-item>
+        <mat-list-item role="listitem"><button mat-raised-button  role="button"  (click)="moreDetails(i)">Download Solution</button></mat-list-item>
         <mat-divider></mat-divider>
     </mat-list>
 </div>

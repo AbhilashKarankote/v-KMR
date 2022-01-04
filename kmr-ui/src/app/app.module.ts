@@ -14,6 +14,8 @@ import { AddKnowledgeComponent } from './add-knowledge/add-knowledge.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ListProjectsComponent } from './list-projects/list-projects.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { ActionCellRenderer } from './add-knowledge/action-cell-renderer.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
     SearchComponent,
     FileUploadComponent,
     AddKnowledgeComponent,
-    ListProjectsComponent
+    ListProjectsComponent,
+    ActionCellRenderer
   ],
   imports: [
     BrowserModule,
@@ -35,9 +38,10 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
     FormsModule,
     NgxDocViewerModule,
     PdfViewerModule,
-    
+    AgGridModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ActionCellRenderer]
 })
 export class AppModule { }

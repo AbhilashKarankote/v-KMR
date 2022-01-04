@@ -6,6 +6,14 @@ export class Project{
 	public  technologies:string,
 	public  projectSbu:string,
 	public  projectManager:string,
-	public  technicalLead:string
+	public  technicalLead:string,
+	public  problemSolution:ProblemSolution[]
     ){}
+}
+
+export class ProblemSolution{
+	constructor(
+	public  problem:string,
+	public  solution:string
+	){}
 }

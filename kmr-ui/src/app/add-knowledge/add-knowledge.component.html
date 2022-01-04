@@ -14,6 +14,15 @@
   <mat-list-item role="listitem">Technologies: {{project.technologies}}</mat-list-item>
 </mat-list>
 
+<ag-grid-angular
+    style="width: 90%; height: 40%;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [frameworkComponents]="frameworkComponents"
+    [rowHeight]="49"
+>
+</ag-grid-angular>
 <form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="onSubmit()">
     <mat-card>
             <mat-form-field class="example-full-width" appearance="fill">
