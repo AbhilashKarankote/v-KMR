@@ -1,13 +1,28 @@
 .example-form {
     min-width: 150px;
-    
-    width: 100%;
+    width: 70%;
   }
   
+.header {
+  margin: 0px;
+  
+}
+
   .example-full-width {
-    width: 100%;
+    width: 70%;
   }
 
   button{
     margin: 1rem;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto ;
+  padding: 5px;
+}
+
+.grid-item {
+  text-align: center;
 }

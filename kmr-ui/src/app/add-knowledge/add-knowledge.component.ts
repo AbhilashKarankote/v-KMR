@@ -25,7 +25,7 @@ export class AddKnowledgeComponent implements OnInit {
   id:string
   rowData;
   columnDefs: ColDef[] = [
-    { field: 'problem', headerName: "Existing Solutions",width:1000},
+    { field: 'problem', headerName: "Existing Solutions",width:700 , sortable: true, filter: true },
     { field: 'action',headerName: "Action",width:200, cellRenderer: "actionCellRenderer" }
 ];
 

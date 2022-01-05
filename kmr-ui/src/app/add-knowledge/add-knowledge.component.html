@@ -1,40 +1,51 @@
-<h3>Add Knowledge</h3>
+<h3 class="header">KMR Capture</h3>
 
 <!-- <mat-form-field class="example-full-width" appearance="fill">
   <mat-label color= "primary">Project Code</mat-label>
   <input matInput placeholder="1234" formControlName="projectCode">
 </mat-form-field> -->
 
-<mat-list role="list" *ngIf="project">
-  <mat-list-item role="listitem">Project Name: {{project.projectName}}</mat-list-item>
-  <mat-list-item role="listitem">Project Code: {{project.projectCode}}</mat-list-item>
-  <mat-list-item role="listitem">Project SBU: {{project.projectSbu}}</mat-list-item>
-  <mat-list-item role="listitem">Project Manager: {{project.projectManager}}</mat-list-item>
-  <mat-list-item role="listitem">Technical Lead: {{project.technicalLead}}</mat-list-item>
-  <mat-list-item role="listitem">Technologies: {{project.technologies}}</mat-list-item>
+<mat-list class="grid-container" role="list" *ngIf="project">
+  <mat-list-item class="grid-item" role="listitem">Project Name: {{project.projectName}}</mat-list-item>
+  <mat-list-item class="grid-item" role="listitem">Project Code: {{project.projectCode}}</mat-list-item>
+  <mat-list-item class="grid-item" role="listitem">Project SBU: {{project.projectSbu}}</mat-list-item>
+  <mat-list-item class="grid-item" role="listitem">Project Manager: {{project.projectManager}}</mat-list-item>
+  <mat-list-item class="grid-item" role="listitem">Technical Lead: {{project.technicalLead}}</mat-list-item>
+  <mat-list-item class="grid-item" role="listitem">Technologies: {{project.technologies}}</mat-list-item>
 </mat-list>
 
-<ag-grid-angular
-    style="width: 90%; height: 40%;"
-    class="ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [frameworkComponents]="frameworkComponents"
-    [rowHeight]="49"
->
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Existing Solutions">
+
+<div style="margin: 2rem;">
+
+  <ag-grid-angular
+      style="width: 900px; height: 300px;"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [frameworkComponents]="frameworkComponents"
+      [rowHeight]="49"
+  >
 </ag-grid-angular>
+</div>
+  </mat-tab>
+  <mat-tab label="Add Solution">
+
+  
+
 <form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="onSubmit()">
-    <mat-card>
+    
             <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label color= "primary">problem</mat-label>
+              <mat-label color= "primary">Problem statement</mat-label>
               <input matInput placeholder="problem" formControlName="problem" >
             </mat-form-field>
   
             <mat-form-field class="example-full-width" appearance="fill" color = "primary">
-              <mat-label>Solution</mat-label>
-              <textarea matInput placeholder="Solution" formControlName="solution" rows="8"   cdkTextareaAutosize></textarea>
+              <mat-label>Solution in a nutshell</mat-label>
+              <textarea matInput placeholder="Solution" formControlName="solution" rows="4"   cdkTextareaAutosize></textarea>
               
-            </mat-form-field>
+            </mat-form-field><br>
             
             <input type="file" class="file-input"
          (change)="onFileSelected($event)" formControlName="file"  #fileUpload>
@@ -62,7 +73,8 @@
   
   </div>
         
-</mat-card>
         <button mat-raised-button color="primary" [disabled]="!isValid()">Submit</button>
     </form>
+  </mat-tab>
+</mat-tab-group>
 
