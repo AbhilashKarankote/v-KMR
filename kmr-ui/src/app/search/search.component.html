@@ -1,4 +1,4 @@
-<h3>KMR Search/Download</h3>
+<h3 class="header">KMR Search/Download</h3>
 <div class="align">
 
     <form class="example-form">
@@ -13,9 +13,9 @@
 
 <div *ngIf="data.length !== 0; else elseBlock">
     <mat-list role="list" *ngFor="let d of data;let i = index">
-        <mat-list-item role="listitem">Problem: {{d.problem}}</mat-list-item>
-        <mat-list-item role="listitem">Solution: {{d.solution}}</mat-list-item>
-        <mat-list-item role="listitem"><button mat-raised-button  role="button"  (click)="moreDetails(i)">Download Solution</button></mat-list-item>
+        <mat-list-item role="listitem"><b>Problem: &nbsp;</b> <a role="button" style="color: navy; cursor: pointer;" (click)="moreDetails(i)">{{d.problem}}</a></mat-list-item>
+        <mat-list-item role="listitem"><b>Solution: &nbsp;</b>{{d.solution}}</mat-list-item>
+        <!-- <mat-list-item role="listitem"><button mat-raised-button  role="button"  (click)="moreDetails(i)">Download Solution</button></mat-list-item> -->
         <mat-divider></mat-divider>
     </mat-list>
 </div>
