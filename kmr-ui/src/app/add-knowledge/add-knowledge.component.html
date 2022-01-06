@@ -26,53 +26,54 @@
       [columnDefs]="columnDefs"
       [frameworkComponents]="frameworkComponents"
       [rowHeight]="49"
+      [gridOptions]="gridOptions"
   >
 </ag-grid-angular>
 </div>
   </mat-tab>
   <mat-tab label="Add Solution">
 
-  
+
 
 <form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="onSubmit()">
-    
+
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label color= "primary">Problem statement</mat-label>
               <input matInput placeholder="problem" formControlName="problem" >
             </mat-form-field>
-  
+
             <mat-form-field class="example-full-width" appearance="fill" color = "primary">
               <mat-label>Solution in a nutshell</mat-label>
               <textarea matInput placeholder="Solution" formControlName="solution" rows="4"   cdkTextareaAutosize></textarea>
-              
+
             </mat-form-field><br>
-            
+
             <input type="file" class="file-input"
          (change)="onFileSelected($event)" formControlName="file"  #fileUpload>
-  
+
      <div class="file-upload">
-  
+
      {{fileName || "No file uploaded yet."}}
-  
+
       <button mat-mini-fab color="primary" class="upload-btn"
         (click)="fileUpload.click()">
           <mat-icon>attach_file</mat-icon>
-  
+
       </button>
-  
+
   </div>
-  
+
   <div class="progress">
-  
+
     <mat-progress-bar class="progress-bar" mode="determinate"
                       [value]="uploadProgress" *ngIf="uploadProgress">
     </mat-progress-bar>
-  
-    <mat-icon class="cancel-upload" (click)="cancelUpload()" 
+
+    <mat-icon class="cancel-upload" (click)="cancelUpload()"
               *ngIf="uploadProgress">delete_forever</mat-icon>
-  
+
   </div>
-        
+
         <button mat-raised-button color="primary" [disabled]="!isValid()">Submit</button>
     </form>
   </mat-tab>
