@@ -1,38 +1,41 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon (click)="sidenav.toggle()" >menu</mat-icon>
-    </button>
-    <span>Knowledge Management Repository </span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-  <mat-sidenav-container hasBackdrop="false">
-      <mat-sidenav #sidenav mode="push" disableClose="true" role="navigation">
-        <mat-nav-list>
-            <mat-list-item  routerLinkActive="active">
-                <button mat-button [routerLink]="['/search']" >Search</button>
-             </mat-list-item>
-             <mat-divider ></mat-divider>
-            <mat-list-item *ngIf="false"  routerLinkActive="active">
-               <button mat-button [routerLink]="['/addProject']"  >Add project</button>
-            </mat-list-item>
-            <mat-list-item  routerLinkActive="active">
-               <button mat-button [routerLink]="['/list-projects']"  >Projects</button>
-            </mat-list-item>
-            <mat-divider ></mat-divider>
-            <mat-list-item *ngIf="false"  routerLinkActive="active">
-               <button mat-button [routerLink]="['/addKnowledge']" >Add Knowledge</button>
-            </mat-list-item>
-          </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-          <router-outlet></router-outlet>
-        </mat-sidenav-content>
-  </mat-sidenav-container>
+<div>
+
+  <mat-toolbar color="primary" style="position: sticky;">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon (click)="sidenav.toggle()" >menu</mat-icon>
+      </button>
+      <span>Knowledge Management Repository </span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-sidenav-container hasBackdrop="false">
+        <mat-sidenav #sidenav mode="push" disableClose="true" role="navigation">
+          <mat-nav-list>
+              <mat-list-item  routerLinkActive="active">
+                  <button mat-button [routerLink]="['/search']" >Search</button>
+               </mat-list-item>
+               <mat-divider ></mat-divider>
+              <mat-list-item *ngIf="false"  routerLinkActive="active">
+                 <button mat-button [routerLink]="['/addProject']"  >Add project</button>
+              </mat-list-item>
+              <mat-list-item  routerLinkActive="active">
+                 <button mat-button [routerLink]="['/list-projects']"  >Projects</button>
+              </mat-list-item>
+              <mat-divider ></mat-divider>
+              <mat-list-item *ngIf="false"  routerLinkActive="active">
+                 <button mat-button [routerLink]="['/addKnowledge']" >Add Knowledge</button>
+              </mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+          </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
   
   

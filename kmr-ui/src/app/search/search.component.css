@@ -12,3 +12,9 @@
   .align{
     text-align: center;
   }
+
+  .header {
+    margin: 0px;
+    margin-bottom: 1rem;
+    
+  }
