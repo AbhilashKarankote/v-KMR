@@ -132,4 +132,5 @@ isValid():boolean{
    && this.knowledgeForm.get("solution").value !== ""
    && this.knowledgeForm.get("file").value !== ""
 }
+
 }

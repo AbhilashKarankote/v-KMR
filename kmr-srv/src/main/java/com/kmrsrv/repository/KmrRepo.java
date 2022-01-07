@@ -13,5 +13,5 @@ public interface KmrRepo extends MongoRepository<CaptureModel, String> {
 	
 	@Query(value = "{'problemSolution.problem' : /.*?0.*/}")
 	public List<CaptureModel> findBySearchKey(String key);
-
+	
 }
