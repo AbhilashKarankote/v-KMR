@@ -59,17 +59,18 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from "ag-grid-community"
         this.knowledgeService.deleteProblem(this.params.context.componentParent.id,this.problemIndex).subscribe(
           response => {
             console.log("deleted");
+            this.captureService.getProjectById(this.params.context.componentParent.id).subscribe(proj => {
+              this.project = proj
+               //proj.problemSolution.forEach( ps => { this.rowData.push({"problem":ps.problem}) })
+               this.params.context.componentParent.rowData =  proj.problemSolution.map(ps => {
+                 return {"problem":ps.problem}
+                 });
+              console.log(proj);
+              console.log(this.params.context.componentParent.rowData);
+            })
           }
         )
-        this.captureService.getProjectById(this.params.context.componentParent.id).subscribe(proj => {
-          this.project = proj
-           //proj.problemSolution.forEach( ps => { this.rowData.push({"problem":ps.problem}) })
-           this.params.context.componentParent.rowData =  proj.problemSolution.map(ps => {
-             return {"problem":ps.problem}
-             });
-          console.log(proj);
-          console.log(this.params.context.componentParent.rowData);
-        })
+
     }
 
 
