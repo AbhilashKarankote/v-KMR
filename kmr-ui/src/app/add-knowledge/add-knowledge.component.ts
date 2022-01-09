@@ -28,6 +28,11 @@ export class AddKnowledgeComponent implements OnInit {
     { field: 'problem', headerName: "Existing Solutions",width:700 , sortable: true, filter: true },
     { field: 'action',headerName: "Action",width:200, cellRenderer: "actionCellRenderer" }
 ];
+gridOptions = {
+  context : {
+    componentParent: this,
+  }
+}
 
   constructor(private fb:FormBuilder,
      private http:HttpClient,
@@ -58,7 +63,6 @@ export class AddKnowledgeComponent implements OnInit {
       "solution":[""],
       "file":[""]
     })
-    
   }
 
   fileName = '';
@@ -79,7 +83,7 @@ export class AddKnowledgeComponent implements OnInit {
     const file:File = event.target.files[0];
     console.log("here");
     console.log(event)
-  
+
     if (file) {
         this.fileName = file.name;
         console.log(this.fileName)
@@ -88,7 +92,7 @@ export class AddKnowledgeComponent implements OnInit {
         //this.formData.append("problem", this.knowledgeForm.get("problem").value);
         //this.formData.append("solution", this.knowledgeForm.get("solution").value);
 
-       
+
     }
 }
 
@@ -123,12 +127,11 @@ onSubmit(){
   this.fileName=null
 }
 
+
 isValid():boolean{
   return this.knowledgeForm.get("problem").value !== ""
    && this.knowledgeForm.get("solution").value !== ""
    && this.knowledgeForm.get("file").value !== ""
 }
-
-
 
 }

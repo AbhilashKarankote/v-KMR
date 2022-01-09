@@ -18,4 +18,8 @@ export class AddKnowledgeService {
       observe: 'events'
   })
   }
+
+  deleteProblem(id : string,problemIndex : number) {
+    return this.http.delete(constants.baseUrl+constants.deleteProblem+id+"/"+problemIndex);
+  }
 }

@@ -90,5 +90,14 @@ public class CaptureService {
 	public CaptureModel getProjectById(String id) {
 		return kmrRepo.findById(id).get();
 	}
+	
+	public void deleteSolution(String id,int problemIndex) {
+		 CaptureModel cm = new CaptureModel();
+		 cm = kmrRepo.findById(id).get();
+		 List<ProbSol> problems = cm.getProblemSolution();
+		 problems.remove(problemIndex);
+		 cm.setProblemSolution(problems); //updated
+		 kmrRepo.save(cm);
+	}
 
 }
