@@ -14,7 +14,9 @@
   <mat-list-item class="grid-item" role="listitem">Technologies: {{project.technologies}}</mat-list-item>
 </mat-list>
 
-<mat-tab-group dynamicHeight>
+<mat-tab-group dynamicHeight
+[(selectedIndex)] = "selectedIndex"
+>
   <mat-tab label="Existing Solutions">
 
 <div style="margin: 2rem;">

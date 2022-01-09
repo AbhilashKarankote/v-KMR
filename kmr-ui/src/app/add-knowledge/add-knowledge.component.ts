@@ -24,6 +24,7 @@ export class AddKnowledgeComponent implements OnInit {
   formData:FormData
   id:string
   rowData;
+  selectedIndex:any;
   columnDefs: ColDef[] = [
     { field: 'problem', headerName: "Existing Solutions",width:700 , sortable: true, filter: true },
     { field: 'action',headerName: "Action",width:200, cellRenderer: "actionCellRenderer" }
@@ -48,15 +49,7 @@ gridOptions = {
     this.route.params.subscribe(res => {
       this.id = res["id"];
     })
-    this.captureService.getProjectById(this.id).subscribe(proj => {
-      this.project = proj
-       //proj.problemSolution.forEach( ps => { this.rowData.push({"problem":ps.problem}) })
-      this.rowData =  proj.problemSolution.map(ps => {
-         return {"problem":ps.problem}
-         });
-      console.log(proj);
-      console.log(this.rowData);
-    })
+    this.getProject();
     this.knowledgeForm = this.fb.group({
       "projectCode":[""],
       "problem":[""],
@@ -68,16 +61,20 @@ gridOptions = {
   fileName = '';
   uploadProgress:number;
   uploadSub: Subscription;
+  
+    public getProject() {
+    this.captureService.getProjectById(this.id).subscribe(proj => {
+      this.project = proj;
+      //proj.problemSolution.forEach( ps => { this.rowData.push({"problem":ps.problem}) })
+      this.rowData = proj.problemSolution.map(ps => {
+        return { "problem": ps.problem };
+      });
+      console.log(proj);
+      console.log(this.rowData);
+    });
+  }
 
-  // onChange(){
-  //   //this.project.technologies.concat(", ")
-  //   let projectCode=this.knowledgeForm.get("projectCode").value
-  //   console.log(projectCode)
-  //   this.captureService.getProject(projectCode).subscribe(proj =>{
-  //     console.log(proj)
-  //   this.project=proj
-  //   })
-  // }
+  
 
   onFileSelected(event) {
     const file:File = event.target.files[0];
@@ -125,6 +122,9 @@ onSubmit(){
 
   this.ngOnInit();
   this.fileName=null
+  setTimeout( () =>  this.getProject()  ,1000)
+  this.selectedIndex = 0
+ 
 }
 
 
