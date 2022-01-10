@@ -6,10 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kmrsrv.model.CaptureModel;
 import com.kmrsrv.model.ProbSol;
@@ -36,6 +40,22 @@ public class CaptureService {
 		captureModel.getProblemSolution().add(probSol);
 		kmrRepo.save(captureModel);
 		
+	}
+	
+	public void editKnowledge(MultipartFile file,String problem,String solution,String projectCode,int rowIndex) {
+		CaptureModel cm = kmrRepo.findById(projectCode).get();
+		List<ProbSol> pb = cm.getProblemSolution();
+		pb.get(rowIndex).setProblem(problem);
+		pb.get(rowIndex).setSolution(solution);
+		try {
+			pb.get(rowIndex).setFile(
+			          new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		cm.setProblemSolution(pb); //edited
+		kmrRepo.save(cm);
 	}
 
 	public List<ProbSol> getKnowledge(String key) {

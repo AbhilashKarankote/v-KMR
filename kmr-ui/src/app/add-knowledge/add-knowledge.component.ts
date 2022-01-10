@@ -10,6 +10,7 @@ import { AddKnowledgeService } from './add-knowledge.service';
 import { ColDef } from 'ag-grid-community';
 import { ActionCellRenderer } from './action-cell-renderer.component';
 
+
 @Component({
   selector: 'app-add-knowledge',
   templateUrl: './add-knowledge.component.html',
@@ -34,6 +35,8 @@ gridOptions = {
     componentParent: this,
   }
 }
+type: boolean = false;
+rowIndex : number
 
   constructor(private fb:FormBuilder,
      private http:HttpClient,
@@ -61,7 +64,7 @@ gridOptions = {
   fileName = '';
   uploadProgress:number;
   uploadSub: Subscription;
-  
+
     public getProject() {
     this.captureService.getProjectById(this.id).subscribe(proj => {
       this.project = proj;
@@ -74,7 +77,7 @@ gridOptions = {
     });
   }
 
-  
+
 
   onFileSelected(event) {
     const file:File = event.target.files[0];
@@ -103,7 +106,7 @@ this.uploadProgress = null;
 this.uploadSub = null;
 }
 
-onSubmit(){
+onSubmit() {
   this.knowledgeForm.patchValue({
     "projectCode": this.project.projectCode
   })
@@ -124,7 +127,7 @@ onSubmit(){
   this.fileName=null
   setTimeout( () =>  this.getProject()  ,1000)
   this.selectedIndex = 0
- 
+
 }
 
 
@@ -132,6 +135,60 @@ isValid():boolean{
   return this.knowledgeForm.get("problem").value !== ""
    && this.knowledgeForm.get("solution").value !== ""
    && this.knowledgeForm.get("file").value !== ""
+}
+
+isUpdateValid() : boolean {
+  return this.knowledgeForm.get("problem").value !== ""
+   && this.knowledgeForm.get("solution").value !== ""
+}
+
+onEdit(data) {
+  console.log("Test")
+  this.rowIndex = data
+  this.type = true
+  this.selectedIndex = 1;
+  //this.fileName = this.project.problemSolution[data].file.arrayBuffer[0]
+  this.knowledgeForm.patchValue({
+    "problem":[this.project.problemSolution[data].problem],
+    "solution":[this.project.problemSolution[data].solution],
+  })
+}
+
+clearData(event) {
+  console.log(event.tab.textLabel)
+  if(event.tab.textLabel == "Existing Solutions") {
+    this.knowledgeForm.patchValue({
+    "problem":[''],
+    "solution":[''],
+  })
+  }
+  else if(event.tab.textLabel == "Add Solution") {
+    if(this.type == true) {
+      return this.type
+    }
+    else {
+      this.type = false
+    }
+  }
+}
+
+
+onUpdate() {
+  this.upload$ = this.knowledgeService.editKnowledge(this.id,this.rowIndex,this.formData,this.knowledgeForm.value)
+  .pipe(
+      finalize(() => this.reset())
+  );
+
+  this.uploadSub = this.upload$.subscribe(event => {
+    if (event.type == HttpEventType.UploadProgress) {
+      this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+    }
+  })
+
+  this.ngOnInit();
+  this.fileName=null
+  setTimeout( () =>  this.getProject()  ,1000)
+  this.selectedIndex = 0
 }
 
 }
