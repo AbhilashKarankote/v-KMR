@@ -16,7 +16,7 @@
 
 <mat-tab-group dynamicHeight
 [(selectedIndex)] = "selectedIndex"
->
+(selectedTabChange)="clearData($event)">
   <mat-tab label="Existing Solutions">
 
 <div style="margin: 2rem;">
@@ -37,7 +37,7 @@
 
 
 
-<form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="onSubmit()">
+<form #f class="example-form" [formGroup]="knowledgeForm" (ngSubmit)="type ? onUpdate(): onSubmit() ">
 
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label color= "primary">Problem statement</mat-label>
@@ -76,7 +76,7 @@
 
   </div>
 
-        <button mat-raised-button color="primary" [disabled]="!isValid()">Submit</button>
+        <button mat-raised-button color="primary" [disabled]="type ? !isUpdateValid() : !isValid()">{{type ? "Update" : "Submit"}}</button>
     </form>
   </mat-tab>
 </mat-tab-group>

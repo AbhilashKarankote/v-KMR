@@ -13,7 +13,9 @@ export class Project{
 
 export class ProblemSolution{
 	constructor(
+  public  id: string,
 	public  problem:string,
-	public  solution:string
+	public  solution:string,
+  public file : File
 	){}
 }

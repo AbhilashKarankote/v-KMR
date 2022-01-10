@@ -64,6 +64,14 @@ public class KmrController {
 		capService.addKnowledge(projectCode,probSol);
 	}
 	
+	@PostMapping(value = "/editKnowledge/{projectCode}/{rowIndex}",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.APPLICATION_JSON_VALUE})
+	public void editKnowledge(@RequestBody MultipartFile file,
+			@RequestParam String problem ,@RequestParam String solution, @PathVariable String projectCode,@PathVariable int rowIndex) {
+		
+		capService.editKnowledge(file,problem,solution,projectCode,rowIndex);
+		
+	}
+	
 	@GetMapping(value = "/getKnowledge/{searchKey}")
 	public List<ProbSol> getKnowledge(@PathVariable String searchKey){
 		return capService.getKnowledge(searchKey);

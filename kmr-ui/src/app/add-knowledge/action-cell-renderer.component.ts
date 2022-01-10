@@ -43,6 +43,7 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from "ag-grid-community"
 
     onEditClick(){
         console.log('edit clicked')
+        this.params.context.componentParent.onEdit(this.params.rowIndex.valueOf());
     }
 
     onDeleteClick(){
