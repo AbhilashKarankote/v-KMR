@@ -143,7 +143,6 @@ isUpdateValid() : boolean {
 }
 
 onEdit(data) {
-  console.log("Test")
   this.rowIndex = data
   this.type = true
   this.selectedIndex = 1;
